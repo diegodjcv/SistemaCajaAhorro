@@ -30,10 +30,11 @@ public class PersonaDao implements Serializable {
         if (p != null) {
             em.remove(p);
         }
+        
     }
 
     public Persona buscar(int id) {
-        return em.find(Persona.class, id);
+        return em.find(Persona.class, id); 
     }
 
     public List<Persona> listar() {
@@ -63,6 +64,7 @@ public class PersonaDao implements Serializable {
             return null;
         }
     }
+    
 
     public void cerrarSesion() {
     }
