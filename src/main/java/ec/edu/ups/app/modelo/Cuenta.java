@@ -23,6 +23,8 @@ public class Cuenta {
 	}
 	@OneToOne
 	private Socio socio;
+	private double saldo;
+	
 	public int getId() {
 		return id;
 	}
@@ -46,6 +48,12 @@ public class Cuenta {
 	}
 	public void setSocio(Socio socio) {
 		this.socio = socio;
+	}
+	public double getSaldo() {
+		return saldo;
+	}
+	public void setSaldo(double saldo) {
+		this.saldo = saldo;
 	}
 	
 	
