@@ -13,6 +13,14 @@ public class Cuenta {
 	private int id;
 	private int numCuenta;
 	private Date fechaApertura;
+	private double Saldo;
+	
+	public double getSaldo() {
+		return Saldo;
+	}
+	public void setSaldo(double saldo) {
+		Saldo = saldo;
+	}
 	@OneToOne
 	private Socio socio;
 	private double saldo;
