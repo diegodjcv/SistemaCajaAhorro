@@ -14,7 +14,7 @@ public class AsientoContableON {
 
     public void guardar(AsientoContable asiento) {
         if (asiento.getId() == 0)
-            asientoDAO.guardar(asiento);
+            asientoDAO.actualizar(asiento);
         else
             asientoDAO.actualizar(asiento);
     }

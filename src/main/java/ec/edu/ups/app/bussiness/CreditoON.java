@@ -14,7 +14,7 @@ public class CreditoON {
 
     public void guardar(Credito credito) {
         if (credito.getId() == 0)
-            creditoDAO.guardar(credito);
+            creditoDAO.solicitarCredito(credito);
         else
             creditoDAO.actualizar(credito);
     }

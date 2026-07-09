@@ -14,7 +14,7 @@ public class TransaccionON {
 
     public void guardar(Transaccion transaccion) {
         if (transaccion.getId() == 0)
-            transaccionDAO.guardar(transaccion);
+            transaccionDAO.insertar(transaccion);
         else
             transaccionDAO.actualizar(transaccion);
     }

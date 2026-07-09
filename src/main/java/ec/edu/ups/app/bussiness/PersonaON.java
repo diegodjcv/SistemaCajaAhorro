@@ -20,8 +20,8 @@ public class PersonaON {
             personaDAO.actualizar(persona);
     }
 
-    public void eliminar(int codigo) {
-        personaDAO.eliminar(codigo);
+    public void eliminar(String cedula) {
+        personaDAO.eliminar(cedula);
     }
 
     public Persona buscar(int codigo) {

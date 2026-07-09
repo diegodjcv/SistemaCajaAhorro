@@ -14,7 +14,7 @@ public class TransaccionDiarioON {
 
     public void guardar(TransaccionDiario diario) {
         if (diario.getId() == 0)
-            diarioDAO.guardar(diario);
+            diarioDAO.insertar(diario);
         else
             diarioDAO.actualizar(diario);
     }

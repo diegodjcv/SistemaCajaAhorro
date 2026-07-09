@@ -31,6 +31,8 @@ public class PersonaDao implements Serializable {
             String jpql = "DELETE p FROM Persona p WHERE p.cedula=:cedula";
             TypedQuery<Persona> query = em.createQuery(jpql, Persona.class);
             query.setParameter("cedula", cedula);
+        }catch(Exception e) {
+        	
         }
     }
 

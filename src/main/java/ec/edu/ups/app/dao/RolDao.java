@@ -34,5 +34,5 @@ public class RolDao implements Serializable{
     public List<Rol> listar(){
         return em.createQuery("SELECT r FROM Rol r",Rol.class).getResultList();
     }
-
 }
+

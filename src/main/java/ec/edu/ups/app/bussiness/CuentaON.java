@@ -14,7 +14,7 @@ public class CuentaON {
 
     public void guardar(Cuenta cuenta) {
         if (cuenta.getId() == 0)
-            cuentaDAO.guardar(cuenta);
+            cuentaDAO.insertar(cuenta);
         else
             cuentaDAO.actualizar(cuenta);
     }

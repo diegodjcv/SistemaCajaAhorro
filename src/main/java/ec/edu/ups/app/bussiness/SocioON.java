@@ -19,8 +19,8 @@ public class SocioON {
             socioDAO.actualizar(socio);
     }
 
-    public void eliminar(int codigo) {
-        socioDAO.eliminar(codigo);
+    public void eliminar(String cedula) {
+        socioDAO.eliminar(cedula);
     }
 
     public Socio buscar(String cedula) {

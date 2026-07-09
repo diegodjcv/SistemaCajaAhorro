@@ -14,7 +14,7 @@ public class TipoTransaccionON {
 
     public void guardar(TipoTransaccion tipo) {
         if (tipo.getId() == 0)
-            tipoDAO.guardar(tipo);
+            tipoDAO.insertar(tipo);
         else
             tipoDAO.actualizar(tipo);
     }
