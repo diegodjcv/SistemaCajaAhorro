@@ -25,12 +25,13 @@ public class PersonaDao implements Serializable {
         em.merge(persona);
     }
 
-    public void eliminar(int id) {
-        Persona p = em.find(Persona.class, id);
-        if (p != null) {
-            em.remove(p);
+    public void eliminar(String cedula) {
+        Persona p = em.find(Persona.class, cedula);
+        try {
+            String jpql = "DELETE p FROM Persona p WHERE p.cedula=:cedula";
+            TypedQuery<Persona> query = em.createQuery(jpql, Persona.class);
+            query.setParameter("cedula", cedula);
         }
-        
     }
 
     public Persona buscar(int id) {

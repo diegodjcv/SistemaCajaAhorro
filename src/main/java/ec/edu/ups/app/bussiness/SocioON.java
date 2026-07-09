@@ -20,14 +20,14 @@ public class SocioON {
     }
 
     public void eliminar(int codigo) {
-        socioDAO.(codigo);
+        socioDAO.eliminar(codigo);
     }
 
-    public Socio buscar(int codigo) {
-        return socioDAO.read(codigo);
+    public Socio buscar(String cedula) {
+        return socioDAO.buscarPorCedula(cedula);
     }
 
     public List<Socio> listar() {
-        return socioDAO.getAll();
+        return socioDAO.listar();
     }
 }
