@@ -122,11 +122,11 @@ public class PersonaBean implements Serializable {
 
     }
 
-    public void buscar(int codigo) {
+    public void buscar(String cedula) {
 
         try {
 
-            persona = personaON.buscar(codigo);
+            persona = personaON.buscar(cedula);
 
         } catch (Exception e) {
 
