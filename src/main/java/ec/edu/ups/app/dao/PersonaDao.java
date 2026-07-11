@@ -31,7 +31,7 @@ public class PersonaDao implements Serializable {
             em.remove(p); 
         }
         }
-    }
+    
     public void eliminar(String cedula) {
         Persona p = em.find(Persona.class, cedula);
         try {

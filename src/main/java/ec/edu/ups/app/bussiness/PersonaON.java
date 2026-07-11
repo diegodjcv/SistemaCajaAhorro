@@ -24,8 +24,8 @@ public class PersonaON {
         personaDAO.eliminar(cedula);
     }
 
-    public Persona buscar(int codigo) {
-        return personaDAO.buscar(codigo);
+    public Persona buscar(String cedula) {
+        return personaDAO.buscarPorCedula(cedula);
     }
 
     public Persona buscarCedula(String cedula) {
