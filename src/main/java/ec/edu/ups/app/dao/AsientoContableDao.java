@@ -1,6 +1,4 @@
 package ec.edu.ups.app.dao;
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,7 +15,7 @@ public class AsientoContableDao implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Inject
-    private EntityManager em;
+    private EntityManager em; 
 
     // Insertar
     public void insertar(AsientoContable asiento) {
@@ -117,10 +115,10 @@ public class AsientoContableDao implements Serializable {
 
         } catch (NoResultException e) {
 
-            return null;
+            return null; 
 
         }
 
     }
-
 }
+

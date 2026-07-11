@@ -28,7 +28,8 @@ public class PersonaDao implements Serializable {
     public void eliminar(int id) {
         Persona p = em.find(Persona.class, id);
         if (p != null) {
-            em.remove(p);
+            em.remove(p); 
+        }
         }
     }
     public void eliminar(String cedula) {
@@ -42,8 +43,8 @@ public class PersonaDao implements Serializable {
         }
     }
 
-    public Persona buscar(int id) {
-        return em.find(Persona.class, id); 
+    public Persona buscar(String cedula) {
+        return em.find(Persona.class, cedula); 
     }
 
     public List<Persona> listar() {
