@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+    <title>Administración de Cuotas</title>
+
+    <h:outputStylesheet library="css" name="estilo.css"/>
+
+</h:head>
+
+<h:body>
+
+<h:form id="frmCuota">
+
+    <p:growl id="mensajes" showDetail="true"/>
+
+    <p:panel header="Registro de Cuotas">
+
+        <p:panelGrid columns="2">
+
+            <h:outputLabel value="Código"/>
+
+            <p:inputText
+                    value="#{cuotaBean.cuota.id}"
+                    readonly="true"/>
+
+            <h:outputLabel value="Crédito"/>
+
+            <p:selectOneMenu
+                    value="#{cuotaBean.creditoSeleccionado}"
+                    required="true">
+
+                <f:selectItem
+                        itemLabel="Seleccione un Crédito"
+                        itemValue="#{null}"/>
+
+                <f:selectItems
+                        value="#{creditoBean.listaCreditos}"
+                        var="cr"
+                        itemValue="#{cr}"
+                        itemLabel="Crédito #{cr.id} - #{cr.cuenta.numero}"/>
+
+            </p:selectOneMenu>
+
+            <h:outputLabel value="Número de Cuota"/>
+
+            <p:inputNumber
+                    value="#{cuotaBean.cuota.numero}"
+                    decimalPlaces="0"/>
+
+            <h:outputLabel value="Fecha de Pago"/>
+
+            <p:datePicker
+                    value="#{cuotaBean.cuota.fechaPago}"
+                    pattern="dd/MM/yyyy"
+                    showIcon="true"/>
+
+            <h:outputLabel value="Valor"/>
+
+            <p:inputNumber
+                    value="#{cuotaBean.cuota.valor}"
+                    decimalPlaces="2"
+                    symbol="$ "
+                    symbolPosition="p"/>
+
+            <h:outputLabel value="Estado"/>
+
+            <p:selectOneMenu
+                    value="#{cuotaBean.cuota.estado}">
+
+                <f:selectItem itemLabel="Pendiente" itemValue="PENDIENTE"/>
+                <f:selectItem itemLabel="Pagada" itemValue="PAGADA"/>
+                <f:selectItem itemLabel="Vencida" itemValue="VENCIDA"/>
+
+            </p:selectOneMenu>
+
+        </p:panelGrid>
+
+        <br/>
+
+        <p:commandButton
+                value="Guardar"
+                icon="pi pi-save"
+                action="#{cuotaBean.guardar}"
+                update="frmCuota"/>
+
+        <p:commandButton
+                value="Pagar Cuota"
+                icon="pi pi-money-bill"
+                action="#{cuotaBean.pagarCuota}"
+                update="frmCuota"/>
+
+        <p:commandButton
+                value="Nuevo"
+                icon="pi pi-plus"
+                action="#{cuotaBean.nuevo}"
+                process="@this"
+                update="frmCuota"/>
+
+    </p:panel>
+
+    <br/>
+
+    <p:panel header="Listado de Cuotas">
+
+        <p:dataTable
+                value="#{cuotaBean.listaCuotas}"
+                var="c"
+                paginator="true"
+                rows="10"
+                responsiveLayout="scroll">
+
+            <p:column headerText="ID">
+                #{c.id}
+            </p:column>
+
+            <p:column headerText="Crédito">
+                #{c.credito.id}
+            </p:column>
+
+            <p:column headerText="Cuenta">
+                #{c.credito.cuenta.numero}
+            </p:column>
+
+            <p:column headerText="Cuota">
+                #{c.numero}
+            </p:column>
+
+            <p:column headerText="Fecha">
+
+                <h:outputText value="#{c.fechaPago}">
+                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                </h:outputText>
+
+            </p:column>
+
+            <p:column headerText="Valor">
+
+                <h:outputText value="#{c.valor}">
+                    <f:convertNumber
+                            type="currency"
+                            currencySymbol="$"/>
+                </h:outputText>
+
+            </p:column>
+
+            <p:column headerText="Estado">
+                #{c.estado}
+            </p:column>
+
+            <p:column headerText="Acciones">
+
+                <p:commandButton
+                        icon="pi pi-pencil"
+                        action="#{cuotaBean.editar(c)}"
+                        update="frmCuota"/>
+
+                <p:commandButton
+                        icon="pi pi-check-circle"
+                        title="Pagar"
+                        action="#{cuotaBean.pagar(c)}"
+                        update="frmCuota"/>
+
+                <p:commandButton
+                        icon="pi pi-trash"
+                        action="#{cuotaBean.eliminar(c)}"
+                        update="frmCuota">
+
+                    <p:confirm
+                            header="Confirmación"
+                            message="¿Eliminar la cuota?"
+                            icon="pi pi-exclamation-triangle"/>
+
+                </p:commandButton>
+
+            </p:column>
+
+        </p:dataTable>
+
+    </p:panel>
+
+    <p:confirmDialog global="true">
+
+        <p:commandButton
+                value="Sí"
+                type="button"
+                styleClass="ui-confirmdialog-yes"/>
+
+        <p:commandButton
+                value="No"
+                type="button"
+                styleClass="ui-confirmdialog-no ui-button-secondary"/>
+
+    </p:confirmDialog>
+
+</h:form>
+
+</h:body>
+
+</html>
