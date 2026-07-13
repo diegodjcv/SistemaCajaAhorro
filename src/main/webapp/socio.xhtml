@@ -1,0 +1,174 @@
+<<<<<<< Updated upstream
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition template="">
+	</ui:composition>
+</html>
+=======
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Administración de Socios</title>
+
+    <h:outputStylesheet library="css" name="estilo.css"/>
+
+</h:head>
+
+<h:body>
+
+<h:form id="frmSocio">
+
+    <p:growl id="mensaje" showDetail="true"/>
+
+    <p:panel header="Registro de Socios">
+
+        <p:panelGrid columns="2" columnClasses="etiqueta,valor">
+
+            <h:outputLabel value="Código"/>
+
+            <p:inputText value="#{socioBean.socio.id}"
+                         readonly="true"/>
+
+            <h:outputLabel value="Persona"/>
+
+            <p:selectOneMenu value="#{socioBean.personaSeleccionada}">
+
+                <f:selectItem itemLabel="Seleccione una Persona"
+                              itemValue="#{null}"/>
+
+                <f:selectItems value="#{personaBean.listaPersonas}"
+                               var="p"
+                               itemLabel="#{p.cedula} - #{p.nombre} #{p.apellido}"
+                               itemValue="#{p}"/>
+
+            </p:selectOneMenu>
+
+            <h:outputLabel value="Dirección"/>
+
+            <p:inputText value="#{socioBean.socio.direccion}"
+                         required="true"/>
+
+            <h:outputLabel value="Teléfono"/>
+
+            <p:inputMask value="#{socioBean.socio.telefono}"
+                         mask="9999999999"/>
+
+            <h:outputLabel value="Fecha de Nacimiento"/>
+
+            <p:datePicker value="#{socioBean.socio.fechaNacimiento}"
+                          pattern="dd/MM/yyyy"
+                          showIcon="true"/>
+
+        </p:panelGrid>
+
+        <br/>
+
+        <p:commandButton value="Guardar"
+                         icon="pi pi-save"
+                         action="#{socioBean.guardar}"
+                         update="frmSocio"/>
+
+        <p:commandButton value="Nuevo"
+                         icon="pi pi-plus"
+                         action="#{socioBean.nuevo}"
+                         process="@this"
+                         update="frmSocio"/>
+
+    </p:panel>
+
+    <br/>
+
+    <p:panel header="Listado de Socios">
+
+        <p:dataTable value="#{socioBean.listaSocios}"
+                     var="s"
+                     paginator="true"
+                     rows="10"
+                     responsiveLayout="scroll">
+
+            <p:column headerText="ID">
+                #{s.id}
+            </p:column>
+
+            <p:column headerText="Cédula">
+                #{s.persona.cedula}
+            </p:column>
+
+            <p:column headerText="Nombre">
+                #{s.persona.nombre}
+            </p:column>
+
+            <p:column headerText="Apellido">
+                #{s.persona.apellido}
+            </p:column>
+
+            <p:column headerText="Dirección">
+                #{s.direccion}
+            </p:column>
+
+            <p:column headerText="Teléfono">
+                #{s.telefono}
+            </p:column>
+
+            <p:column headerText="Fecha Nacimiento">
+                <h:outputText value="#{s.fechaNacimiento}">
+                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                </h:outputText>
+            </p:column>
+
+            <p:column headerText="Edad">
+                #{s.calcularEdad()}
+            </p:column>
+
+            <p:column headerText="Acciones">
+
+                <p:commandButton icon="pi pi-pencil"
+                                 title="Editar"
+                                 action="#{socioBean.editar(s)}"
+                                 update="frmSocio"/>
+
+                <p:spacer width="5"/>
+
+                <p:commandButton icon="pi pi-trash"
+                                 title="Eliminar"
+                                 action="#{socioBean.eliminar(s)}"
+                                 update="frmSocio">
+
+                    <p:confirm header="Confirmación"
+                               message="¿Eliminar este socio?"
+                               icon="pi pi-exclamation-triangle"/>
+
+                </p:commandButton>
+
+            </p:column>
+
+        </p:dataTable>
+
+    </p:panel>
+
+    <p:confirmDialog global="true">
+
+        <p:commandButton value="Sí"
+                         type="button"
+                         styleClass="ui-confirmdialog-yes"/>
+
+        <p:commandButton value="No"
+                         type="button"
+                         styleClass="ui-confirmdialog-no ui-button-secondary"/>
+
+    </p:confirmDialog>
+
+</h:form>
+
+</h:body>
+
+</html>
+>>>>>>> Stashed changes

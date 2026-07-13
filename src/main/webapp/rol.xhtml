@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Administración de Roles</title>
+
+    <h:outputStylesheet library="css" name="estilo.css"/>
+
+</h:head>
+
+<h:body>
+
+<h:form id="frmRol">
+
+    <p:growl id="mensaje" showDetail="true"/>
+
+    <p:panel header="Administración de Roles">
+
+        <p:panelGrid columns="2" columnClasses="etiqueta,valor">
+
+            <h:outputLabel value="Código"/>
+
+            <p:inputText id="id"
+                         value="#{rolBean.rol.id}"
+                         readonly="true"/>
+
+            <h:outputLabel value="Tipo de Rol"/>
+
+            <p:inputText id="tipo"
+                         value="#{rolBean.rol.tipo}"
+                         required="true"
+                         requiredMessage="Ingrese el tipo de rol"/>
+
+        </p:panelGrid>
+
+        <br/>
+
+        <p:commandButton value="Guardar"
+                         icon="pi pi-save"
+                         action="#{rolBean.guardar}"
+                         update="frmRol"/>
+
+        <p:commandButton value="Nuevo"
+                         icon="pi pi-plus"
+                         action="#{rolBean.nuevo}"
+                         process="@this"
+                         update="frmRol"/>
+
+    </p:panel>
+
+    <br/>
+
+    <p:panel header="Lista de Roles">
+
+        <p:dataTable id="tablaRoles"
+                     value="#{rolBean.listaRoles}"
+                     var="r"
+                     paginator="true"
+                     rows="10"
+                     responsiveLayout="scroll"
+                     emptyMessage="No existen registros">
+
+            <p:column headerText="ID">
+                #{r.id}
+            </p:column>
+
+            <p:column headerText="Rol">
+                #{r.tipo}
+            </p:column>
+
+            <p:column headerText="Acciones">
+
+                <p:commandButton icon="pi pi-pencil"
+                                 title="Editar"
+                                 action="#{rolBean.editar(r)}"
+                                 update="frmRol"/>
+
+                <p:spacer width="10"/>
+
+                <p:commandButton icon="pi pi-trash"
+                                 title="Eliminar"
+                                 action="#{rolBean.eliminar(r)}"
+                                 update="frmRol">
+
+                    <p:confirm header="Confirmación"
+                               message="¿Desea eliminar este rol?"
+                               icon="pi pi-exclamation-triangle"/>
+
+                </p:commandButton>
+
+            </p:column>
+
+        </p:dataTable>
+
+    </p:panel>
+
+    <p:confirmDialog global="true">
+
+        <p:commandButton value="Sí"
+                         type="button"
+                         styleClass="ui-confirmdialog-yes"/>
+
+        <p:commandButton value="No"
+                         type="button"
+                         styleClass="ui-confirmdialog-no ui-button-secondary"/>
+
+    </p:confirmDialog>
+
+</h:form>
+
+</h:body>
+
+</html>

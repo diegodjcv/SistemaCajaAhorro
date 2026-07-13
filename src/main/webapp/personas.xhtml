@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Administración de Personas</title>
+
+    <h:outputStylesheet library="css" name="estilo.css"/>
+
+</h:head>
+
+<h:body>
+
+    <h:form id="frmPersona">
+
+        <p:growl id="mensaje" showDetail="true"/>
+
+        <p:panel header="Administración de Personas">
+
+            <p:panelGrid columns="2" columnClasses="etiqueta,valor">
+
+                <h:outputLabel value="Cédula"/>
+
+                <p:inputText id="cedula"
+                             value="#{personaBean.persona.cedula}"
+                             required="true"
+                             requiredMessage="Ingrese la cédula"/>
+
+                <h:outputLabel value="Nombre"/>
+
+                <p:inputText id="nombre"
+                             value="#{personaBean.persona.nombre}"
+                             required="true"/>
+
+                <h:outputLabel value="Apellido"/>
+
+                <p:inputText id="apellido"
+                             value="#{personaBean.persona.apellido}"
+                             required="true"/>
+
+                <h:outputLabel value="Usuario"/>
+
+                <p:inputText id="usuario"
+                             value="#{personaBean.persona.username}"
+                             required="true"/>
+
+                <h:outputLabel value="Contraseña"/>
+
+                <p:password id="password"
+                            value="#{personaBean.persona.contrasena}"
+                            feedback="false"
+                            required="true"/>
+
+                <h:outputLabel value="Correo"/>
+
+                <p:inputText id="correo"
+                             value="#{personaBean.persona.correo}"
+                             required="true"/>
+
+            </p:panelGrid>
+
+            <br/>
+
+            <p:commandButton
+                    value="Guardar"
+                    icon="pi pi-save"
+                    action="#{personaBean.guardar}"
+                    update="frmPersona"/>
+
+            <p:commandButton
+                    value="Nuevo"
+                    icon="pi pi-plus"
+                    action="#{personaBean.nuevo}"
+                    process="@this"
+                    update="frmPersona"/>
+
+        </p:panel>
+
+        <br/>
+
+        <p:panel header="Listado de Personas">
+
+            <p:dataTable id="tablaPersonas"
+                         value="#{personaBean.listaPersonas}"
+                         var="p"
+                         paginator="true"
+                         rows="10"
+                         responsiveLayout="scroll">
+
+                <p:column headerText="ID">
+                    #{p.id}
+                </p:column>
+
+                <p:column headerText="Cédula">
+                    #{p.cedula}
+                </p:column>
+
+                <p:column headerText="Nombre">
+                    #{p.nombre}
+                </p:column>
+
+                <p:column headerText="Apellido">
+                    #{p.apellido}
+                </p:column>
+
+                <p:column headerText="Usuario">
+                    #{p.username}
+                </p:column>
+
+                <p:column headerText="Correo">
+                    #{p.correo}
+                </p:column>
+
+                <p:column headerText="Acciones">
+
+                    <p:commandButton
+                            icon="pi pi-pencil"
+                            title="Editar"
+                            action="#{personaBean.editar(p)}"
+                            update="frmPersona"/>
+
+                    <p:spacer width="10"/>
+
+                    <p:commandButton
+                            icon="pi pi-trash"
+                            title="Eliminar"
+                            action="#{personaBean.eliminar(p)}"
+                            update="frmPersona">
+
+                        <p:confirm
+                                header="Confirmación"
+                                message="¿Desea eliminar esta persona?"
+                                icon="pi pi-exclamation-triangle"/>
+
+                    </p:commandButton>
+
+                </p:column>
+
+            </p:dataTable>
+
+        </p:panel>
+
+        <p:confirmDialog global="true">
+
+            <p:commandButton
+                    value="Sí"
+                    type="button"
+                    styleClass="ui-confirmdialog-yes"/>
+
+            <p:commandButton
+                    value="No"
+                    type="button"
+                    styleClass="ui-confirmdialog-no ui-button-secondary"/>
+
+        </p:confirmDialog>
+
+    </h:form>
+
+</h:body>
+
+</html>

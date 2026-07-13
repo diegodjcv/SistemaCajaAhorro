@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+    <title>Administración de Tipos de Transacción</title>
+
+    <h:outputStylesheet library="css" name="estilo.css"/>
+
+</h:head>
+
+<h:body>
+
+<h:form id="frmTipoTransaccion">
+
+    <p:growl id="mensaje" showDetail="true"/>
+
+    <p:panel header="Registro de Tipos de Transacción">
+
+        <p:panelGrid columns="2">
+
+            <h:outputLabel value="Código"/>
+
+            <p:inputText value="#{tipoTransaccionBean.tipoTransaccion.id}"
+                         readonly="true"/>
+
+            <h:outputLabel value="Nombre"/>
+
+            <p:inputText value="#{tipoTransaccionBean.tipoTransaccion.nombre}"
+                         required="true"
+                         requiredMessage="Ingrese el nombre del tipo de transacción"/>
+
+            <h:outputLabel value="Descripción"/>
+
+            <p:inputTextarea value="#{tipoTransaccionBean.tipoTransaccion.descripcion}"
+                             rows="3"
+                             cols="40"/>
+
+        </p:panelGrid>
+
+        <br/>
+
+        <p:commandButton value="Guardar"
+                         icon="pi pi-save"
+                         action="#{tipoTransaccionBean.guardar}"
+                         update="frmTipoTransaccion"/>
+
+        <p:commandButton value="Nuevo"
+                         icon="pi pi-plus"
+                         action="#{tipoTransaccionBean.nuevo}"
+                         process="@this"
+                         update="frmTipoTransaccion"/>
+
+    </p:panel>
+
+    <br/>
+
+    <p:panel header="Listado de Tipos de Transacción">
+
+        <p:dataTable value="#{tipoTransaccionBean.listaTipos}"
+                     var="t"
+                     paginator="true"
+                     rows="10"
+                     responsiveLayout="scroll"
+                     emptyMessage="No existen registros">
+
+            <p:column headerText="Código">
+                #{t.id}
+            </p:column>
+
+            <p:column headerText="Nombre">
+                #{t.nombre}
+            </p:column>
+
+            <p:column headerText="Descripción">
+                #{t.descripcion}
+            </p:column>
+
+            <p:column headerText="Acciones">
+
+                <p:commandButton icon="pi pi-pencil"
+                                 title="Editar"
+                                 action="#{tipoTransaccionBean.editar(t)}"
+                                 update="frmTipoTransaccion"/>
+
+                <p:spacer width="5"/>
+
+                <p:commandButton icon="pi pi-trash"
+                                 title="Eliminar"
+                                 action="#{tipoTransaccionBean.eliminar(t)}"
+                                 update="frmTipoTransaccion">
+
+                    <p:confirm header="Confirmación"
+                               message="¿Desea eliminar este tipo de transacción?"
+                               icon="pi pi-exclamation-triangle"/>
+
+                </p:commandButton>
+
+            </p:column>
+
+        </p:dataTable>
+
+    </p:panel>
+
+    <p:confirmDialog global="true">
+
+        <p:commandButton value="Sí"
+                         type="button"
+                         styleClass="ui-confirmdialog-yes"/>
+
+        <p:commandButton value="No"
+                         type="button"
+                         styleClass="ui-confirmdialog-no ui-button-secondary"/>
+
+    </p:confirmDialog>
+
+</h:form>
+
+</h:body>
+
+</html>
