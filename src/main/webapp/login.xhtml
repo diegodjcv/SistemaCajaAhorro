@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html 
+	template="/templates/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <title>Sistema Bancario - Inicio de Sesión</title>
+
+    <title>Sistema Bancario</title>
 
     <h:outputStylesheet library="css" name="login.css"/>
 
@@ -13,68 +15,72 @@
 
 <h:body>
 
-    <div class="login-container">
+<div class="login-page">
+
+    <div class="login-box">
+
+        <div class="logo">
+
+            <h:graphicImage
+                    library="imgs"
+                    name="banco.png"
+                    width="120"/>
+
+            <h2>SISTEMA BANCARIO</h2>
+
+            <p>Cooperativa de Ahorro y Crédito</p>
+
+        </div>
 
         <h:form id="frmLogin">
 
-            <p:growl id="mensajes" showDetail="true"/>
+            <p:growl autoUpdate="true"
+                     showDetail="true"/>
 
-            <p:panel header="INICIO DE SESIÓN">
+            <div class="campo">
 
-                <div style="text-align:center">
+                <span>Usuario</span>
 
-                    <h:graphicImage library="images"
-                                    name="banco.png"
-                                    width="120"/>
+                <p:inputText
+                        value="#{loginBean.usuario}"
+                        required="true"/>
 
-                    <br/><br/>
+            </div>
 
-                </div>
+            <div class="campo">
 
-                <p:panelGrid columns="2">
+                <span>Contraseña</span>
 
-                    <h:outputLabel value="Usuario"/>
+                <p:password
+                        value="#{loginBean.clave}"
+                        feedback="false"
+                        required="true"/>
 
-                    <p:inputText
-                            value="#{loginBean.usuario}"
-                            required="true"
-                            requiredMessage="Ingrese el usuario"/>
+            </div>
 
-                    <h:outputLabel value="Contraseña"/>
+            <div class="botones">
 
-                    <p:password
-                            value="#{loginBean.password}"
-                            required="true"
-                            feedback="false"
-                            requiredMessage="Ingrese la contraseña"/>
+                <p:commandButton
+                        value="Ingresar"
+                        icon="pi pi-sign-in"
+                        action=""
+                        update="@form"/>
 
-                </p:panelGrid>
+                <p:commandButton
+                        value="Limpiar"
+                        icon="pi pi-refresh"
+                        action="#{loginBean.limpiar()}"
+                        process="@this"
+                        update="@form"
+                        styleClass="ui-button-secondary"/>
 
-                <br/>
-
-                <div style="text-align:center">
-
-                    <p:commandButton
-                            value="Ingresar"
-                            icon="pi pi-sign-in"
-                            action="#{loginBean.login}"/>
-
-                    <p:spacer width="15"/>
-
-                    <p:commandButton
-                            value="Limpiar"
-                            icon="pi pi-refresh"
-                            action="#{loginBean.limpiar}"
-                            process="@this"
-                            update="frmLogin"/>
-
-                </div>
-
-            </p:panel>
+            </div>
 
         </h:form>
 
     </div>
+
+</div>
 
 </h:body>
 

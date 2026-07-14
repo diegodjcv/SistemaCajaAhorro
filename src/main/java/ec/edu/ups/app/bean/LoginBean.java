@@ -42,7 +42,7 @@ public class LoginBean implements Serializable {
 
                 session.setAttribute("usuario", usuarioLogueado);
 
-                return "/pages/index.xhtml?faces-redirect=true";
+                return "index.xhtml?faces-redirect=true";
 
             } else {
 
@@ -57,12 +57,12 @@ public class LoginBean implements Serializable {
 
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                            "Error",
+                            "Error:::::::::",
                             e.getMessage()));
 
         }
 
-        return null;
+        return "";
 
     }
 
@@ -85,7 +85,7 @@ public class LoginBean implements Serializable {
                             FacesContext.getCurrentInstance()
                                     .getExternalContext()
                                     .getRequestContextPath()
-                                    + "/login.xhtml");
+                                    + "login.xhtml");
 
         } catch (IOException e) {
 
@@ -99,6 +99,11 @@ public class LoginBean implements Serializable {
 
         return usuarioLogueado != null;
 
+    }
+    
+    public void limpiar() {
+    	usuario ="";
+    	clave = "";
     }
 
     public String getNombreUsuario() {

@@ -1,0 +1,171 @@
+/*==========================
+        DASHBOARD
+===========================*/
+
+.dashboard{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+
+}
+
+/*==========================
+        TARJETAS
+===========================*/
+
+.card{
+
+    background:white;
+
+    border-radius:12px;
+
+    padding:25px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+
+    transition:.3s;
+
+    cursor:pointer;
+
+}
+
+.card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 8px 18px rgba(0,0,0,.25);
+
+}
+
+.card h2{
+
+    color:#1565C0;
+
+    font-size:18px;
+
+    margin-bottom:10px;
+
+}
+
+.card .numero{
+
+    font-size:36px;
+
+    font-weight:bold;
+
+    color:#0D47A1;
+
+}
+
+.card .icono{
+
+    font-size:48px;
+
+    color:#64B5F6;
+
+    float:right;
+
+}
+
+/*==========================
+        PANEL
+===========================*/
+
+.panel-dashboard{
+
+    margin-top:20px;
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:12px;
+
+    box-shadow:0 4px 10px rgba(0,0,0,.15);
+
+}
+
+/*==========================
+        TÍTULOS
+===========================*/
+
+.titulo{
+
+    font-size:28px;
+
+    color:#0D47A1;
+
+    margin-bottom:25px;
+
+    font-weight:bold;
+
+}
+
+/*==========================
+       ESTADÍSTICAS
+===========================*/
+
+.estadistica{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.estadistica span{
+
+    font-size:18px;
+
+    color:#666;
+
+}
+
+/*==========================
+        GRÁFICAS
+===========================*/
+
+.grafica{
+
+    margin-top:30px;
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:10px;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.12);
+
+}
+
+/*==========================
+        RESPONSIVE
+===========================*/
+
+@media(max-width:900px){
+
+    .contenedor{
+
+        flex-direction:column;
+
+    }
+
+    .menu{
+
+        width:100%;
+
+    }
+
+    .dashboard{
+
+        grid-template-columns:1fr;
+
+    }
+
+}

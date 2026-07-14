@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+    <title>Sistema Bancario</title>
+
+    <h:outputStylesheet library="css" name="estilo.css"/>
+
+</h:head>
+
+<h:body>
+
+<div class="header">
+
+    <div class="titulo">
+
+        SISTEMA BANCARIO
+
+    </div>
+
+    <div class="usuario">
+
+        Bienvenido
+
+        <strong>
+
+            #{loginBean.usuario}
+
+        </strong>
+
+        <h:form>
+
+            <p:commandButton
+
+                    value="Salir"
+
+                    icon="pi pi-sign-out"
+
+                    action="#{loginBean.logout}"
+
+                    ajax="false"/>
+
+        </h:form>
+
+    </div>
+
+</div>
+
+<div class="principal">
+
+    <div class="menu">
+
+        <p:panelMenu>
+
+            <p:submenu label="Seguridad">
+
+                <p:menuitem value="Dashboard"
+                            outcome="/dashboard"/>
+
+                <p:menuitem value="Personas"
+                            outcome="/persona"/>
+
+                <p:menuitem value="Usuarios"
+                            outcome="/usuario"/>
+
+                <p:menuitem value="Roles"
+                            outcome="/rol"/>
+
+            </p:submenu>
+
+            <p:submenu label="Banco">
+
+                <p:menuitem value="Socios"
+                            outcome="/socio"/>
+
+                <p:menuitem value="Cuentas"
+                            outcome="/cuenta"/>
+
+                <p:menuitem value="Créditos"
+                            outcome="/credito"/>
+
+                <p:menuitem value="Cuotas"
+                            outcome="/cuota"/>
+
+                <p:menuitem value="Transacciones"
+                            outcome="/transaccion"/>
+
+            </p:submenu>
+
+            <p:submenu label="Contabilidad">
+
+                <p:menuitem value="Libro Diario"
+                            outcome="/transaccionDiario"/>
+
+                <p:menuitem value="Asientos"
+                            outcome="/asientoContable"/>
+
+            </p:submenu>
+
+        </p:panelMenu>
+
+    </div>
+
+    <div class="contenido">
+
+        <ui:insert name="contenido"/>
+
+    </div>
+
+</div>
+
+<div class="footer">
+
+    Sistema Bancario © 2026
+
+</div>
+
+</h:body>
+
+</ui:composition>
