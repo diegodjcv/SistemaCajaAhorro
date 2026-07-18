@@ -41,7 +41,7 @@
 
                 <span>Usuario</span>
 
-                <p:inputText
+                <h:inputText
                         value="#{loginBean.usuario}"
                         required="true"/>
 
@@ -51,7 +51,7 @@
 
                 <span>Contraseña</span>
 
-                <p:password
+                <h:inputSecret
                         value="#{loginBean.clave}"
                         feedback="false"
                         required="true"/>
@@ -60,19 +60,18 @@
 
             <div class="botones">
 
-                <p:commandButton
+                <h:commandButton
                         value="Ingresar"
-                        icon="pi pi-sign-in"
-                        action=""
-                        update="@form"/>
+                        action="#{loginBean.login()}"
+                        styleClass="ui-button"/>
 
-                <p:commandButton
+                <h:commandButton
                         value="Limpiar"
                         icon="pi pi-refresh"
                         action="#{loginBean.limpiar()}"
                         process="@this"
                         update="@form"
-                        styleClass="ui-button-secondary"/>
+                        styleClass="ui-button"/>
 
             </div>
 
