@@ -28,11 +28,11 @@ public class LoginBean implements Serializable {
     private Usuario usuarioLogueado;
 
     public String login() {
-
+    	String res="";
         try {
 
             usuarioLogueado = usuarioON.login(usuario, clave);
-
+            System.out.println(usuarioLogueado.getPersona().getNombres());
             if (usuarioLogueado != null) {
 
                 HttpSession session = (HttpSession) FacesContext
@@ -41,9 +41,9 @@ public class LoginBean implements Serializable {
                         .getSession(true);
 
                 session.setAttribute("usuario", usuarioLogueado);
-
-                return "index.xhtml?faces-redirect=true";
-
+                System.out.println("login");
+                res = "/dashboard.xhtml?faces-redirect=true";
+                
             } else {
 
                 FacesContext.getCurrentInstance().addMessage(null,
@@ -61,8 +61,8 @@ public class LoginBean implements Serializable {
                             e.getMessage()));
 
         }
-
-        return "";
+        System.out.println("RESULTADO: "+res);
+        return res;
 
     }
 

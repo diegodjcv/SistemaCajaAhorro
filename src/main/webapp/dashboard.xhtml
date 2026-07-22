@@ -1,67 +1,67 @@
 <!DOCTYPE html>
-<ui:composition
-    template="/templates/template.xhtml"
+<html
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:f="http://xmlns.jcp.org/jsf/core"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
 
-    <ui:define name="contenido">
+    <head>
 
         <h2>Panel Principal</h2>
-
-        <p:separator/>
+        <h:outputStylesheet library="css" name="login.css"/>
 
         <!-- Indicadores -->
-
+	</br>
+	</head>
+	<body>
         <div class="grid">
 
             <div class="col-12 md:col-3">
 
-                <p:panel styleClass="dashboard-card">
+                <h:panelGrid styleClass="dashboard-card">
 
                     <h3>Socios</h3>
 
                     <h1>#{dashboardBean.totalSocios}</h1>
 
-                </p:panel>
+                </h:panelGrid>
 
             </div>
 
             <div class="col-12 md:col-3">
 
-                <p:panel styleClass="dashboard-card">
+                <h:panelGrid styleClass="dashboard-card">
 
                     <h3>Cuentas</h3>
 
                     <h1>#{dashboardBean.totalCuentas}</h1>
 
-                </p:panel>
+                </h:panelGrid>
 
             </div>
 
             <div class="col-12 md:col-3">
 
-                <p:panel styleClass="dashboard-card">
+                <h:panelGrid styleClass="dashboard-card">
 
                     <h3>Créditos</h3>
 
                     <h1>#{dashboardBean.totalCreditos}</h1>
 
-                </p:panel>
+                </h:panelGrid>
 
             </div>
 
             <div class="col-12 md:col-3">
 
-                <p:panel styleClass="dashboard-card">
+                <h:panelGrid styleClass="dashboard-card">
 
                     <h3>Transacciones</h3>
 
                     <h1>#{dashboardBean.totalTransacciones}</h1>
 
-                </p:panel>
+                </h:panelGrid>
 
             </div>
 
@@ -75,7 +75,6 @@
 
             <div class="col-12 md:col-6">
 
-                <p:panel header="Información General">
 
                     <h:panelGrid columns="2" cellpadding="8">
 
@@ -103,48 +102,46 @@
 
                     </h:panelGrid>
 
-                </p:panel>
-
             </div>
 
             <div class="col-12 md:col-6">
 
-                <p:panel header="Accesos Rápidos">
+                <h:panelGrid header="Accesos Rápidos">
 
-                    <p:commandButton value="Personas"
+                    <h:commandButton value="Personas"
                                      icon="pi pi-users"
                                      outcome="/persona"
                                      styleClass="ui-button-primary"/>
 
                     <br/><br/>
 
-                    <p:commandButton value="Socios"
+                    <h:commandButton value="Socios"
                                      icon="pi pi-id-card"
                                      outcome="/socio"
                                      styleClass="ui-button-success"/>
 
                     <br/><br/>
 
-                    <p:commandButton value="Cuentas"
+                    <h:commandButton value="Cuentas"
                                      icon="pi pi-wallet"
                                      outcome="/cuenta"
                                      styleClass="ui-button-help"/>
 
                     <br/><br/>
 
-                    <p:commandButton value="Créditos"
+                    <h:commandButton value="Créditos"
                                      icon="pi pi-credit-card"
                                      outcome="/credito"
                                      styleClass="ui-button-warning"/>
 
                     <br/><br/>
 
-                    <p:commandButton value="Transacciones"
+                    <h:commandButton value="Transacciones"
                                      icon="pi pi-money-bill"
                                      outcome="/transaccion"
                                      styleClass="ui-button-info"/>
 
-                </p:panel>
+                </h:panelGrid>
 
             </div>
 
@@ -154,38 +151,38 @@
 
         <!-- Últimas transacciones -->
 
-        <p:panel header="Últimas Transacciones">
+        <h:panelGrid header="Últimas Transacciones">
 
-            <p:dataTable value="#{dashboardBean.ultimasTransacciones}"
+            <h:dataTable value="#{dashboardBean.ultimasTransacciones}"
                          var="t"
                          paginator="true"
                          rows="5">
 
-                <p:column headerText="Fecha">
+                <h:column headerText="Fecha">
                     <h:outputText value="#{t.fecha}">
                         <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
                     </h:outputText>
-                </p:column>
+                </h:column>
 
-                <p:column headerText="Cuenta">
+                <h:column headerText="Cuenta">
                     #{t.cuenta.numero}
-                </p:column>
+                </h:column>
 
-                <p:column headerText="Tipo">
+                <h:column headerText="Tipo">
                     #{t.tipoTransaccion.nombre}
-                </p:column>
+                </h:column>
 
-                <p:column headerText="Valor">
+                <h:column headerText="Valor">
                     <h:outputText value="#{t.valor}">
                         <f:convertNumber type="currency"
                                          currencySymbol="$"/>
                     </h:outputText>
-                </p:column>
+                </h:column>
 
-            </p:dataTable>
+            </h:dataTable>
 
-        </p:panel>
+        </h:panelGrid>
 
-    </ui:define>
+</body>
 
-</ui:composition>
+</html>

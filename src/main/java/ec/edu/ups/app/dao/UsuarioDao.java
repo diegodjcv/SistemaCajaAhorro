@@ -65,10 +65,10 @@ public class UsuarioDao {
         try {
 
             return em.createQuery(
-                    "SELECT u FROM Usuario u WHERE u.username=:u AND u.password=:p AND u.estado=true",
+                    "SELECT u FROM Usuario u WHERE u.username=:user AND u.password=:pass AND u.estado=true",
                     Usuario.class)
-                    .setParameter("u", username)
-                    .setParameter("p", password)
+                    .setParameter("user", username)
+                    .setParameter("pass", password)
                     .getSingleResult();
 
         } catch (NoResultException e) {
