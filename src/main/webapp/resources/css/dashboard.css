@@ -1,6 +1,77 @@
 /*==========================
         DASHBOARD
 ===========================*/
+.btn{
+
+    width:220px;
+    height:45px;
+
+    border:none;
+    border-radius:6px;
+
+    color:white;
+
+    font-size:15px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.btn:hover{
+
+    opacity:.85;
+
+    transform:scale(1.03);
+
+}
+
+.btn-primary{
+
+    background:#1565C0;
+
+}
+
+.btn-success{
+
+    background:#2E7D32;
+
+}
+
+.btn-info{
+
+    background:#0288D1;
+
+}
+
+.btn-warning{
+
+    background:#F9A825;
+
+    color:#222;
+
+}
+
+.btn-danger{
+
+    background:#C62828;
+
+}
+
+.btn-secondary{
+
+    background:#455A64;
+
+}
+
+.btn-help{
+
+    background:#6A1B9A;
+
+}
+
 
 .dashboard{
 

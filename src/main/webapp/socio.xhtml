@@ -1,163 +1,194 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
 
-<h:head>
-    <title>Administración de Socios</title>
+<ui:composition
+        template="/template.xhtml"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-    <h:outputStylesheet library="css" name="estilo.css"/>
+    <ui:define name="contenido">
 
-</h:head>
+        <h2>Administración de Socios</h2>
 
-<h:body>
+        <h:form id="frmSocio">
 
-<h:form id="frmSocio">
+            <!-- Mensajes -->
 
-    <p:growl id="mensaje" showDetail="true"/>
+            <h:messages id="mensaje"
+                        globalOnly="true"
+                        showDetail="true"
+                        styleClass="mensajes"/>
 
-    <p:panel header="Registro de Socios">
+            <!-- Registro -->
 
-        <p:panelGrid columns="2" columnClasses="etiqueta,valor">
+            <fieldset>
 
-            <h:outputLabel value="Código"/>
+                <legend>Registro de Socios</legend>
 
-            <p:inputText value="#{socioBean.socio.id}"
-                         readonly="true"/>
+                <h:panelGrid columns="2" cellpadding="8">
 
-            <h:outputLabel value="Persona"/>
+                    <h:outputLabel for="codigo" value="Código"/>
 
-            <p:selectOneMenu value="#{socioBean.personaSeleccionada}">
+                    <h:inputText id="codigo"
+                                 value="#{socioBean.socio.id}"
+                                 readonly="true"/>
 
-                <f:selectItem itemLabel="Seleccione una Persona"
-                              itemValue="#{null}"/>
+                    <h:outputLabel for="persona" value="Persona"/>
 
-                <f:selectItems value="#{personaBean.listaPersonas}"
-                               var="p"
-                               itemLabel="#{p.cedula} - #{p.nombre} #{p.apellido}"
-                               itemValue="#{p}"/>
+                    <h:selectOneMenu id="persona"
+                                     value="#{socioBean.personaSeleccionada}">
 
-            </p:selectOneMenu>
+                        <f:selectItem itemLabel="Seleccione una Persona"
+                                      itemValue="#{null}"/>
 
-            <h:outputLabel value="Dirección"/>
+                        <f:selectItems value="#{personaBean.listaPersonas}"
+                                       var="p"
+                                       itemLabel="#{p.cedula} - #{p.nombre} #{p.apellido}"
+                                       itemValue="#{p}"/>
 
-            <p:inputText value="#{socioBean.socio.direccion}"
-                         required="true"/>
+                    </h:selectOneMenu>
 
-            <h:outputLabel value="Teléfono"/>
+                    <h:outputLabel for="direccion" value="Dirección"/>
 
-            <p:inputMask value="#{socioBean.socio.telefono}"
-                         mask="9999999999"/>
+                    <h:inputText id="direccion"
+                                 value="#{socioBean.socio.direccion}"
+                                 required="true"/>
 
-            <h:outputLabel value="Fecha de Nacimiento"/>
+                    <h:outputLabel for="telefono" value="Teléfono"/>
 
-            <p:datePicker value="#{socioBean.socio.fechaNacimiento}"
-                          pattern="dd/MM/yyyy"
-                          showIcon="true"/>
+                    <h:inputText id="telefono"
+                                 value="#{socioBean.socio.telefono}"/>
 
-        </p:panelGrid>
+                    <h:outputLabel for="fecha" value="Fecha de Nacimiento"/>
 
-        <br/>
+                    <h:inputText id="fecha"
+                                 value="#{socioBean.socio.fechaNacimiento}">
 
-        <p:commandButton value="Guardar"
-                         icon="pi pi-save"
-                         action="#{socioBean.guardar}"
-                         update="frmSocio"/>
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
 
-        <p:commandButton value="Nuevo"
-                         icon="pi pi-plus"
-                         action="#{socioBean.nuevo}"
-                         process="@this"
-                         update="frmSocio"/>
+                    </h:inputText>
 
-    </p:panel>
+                </h:panelGrid>
 
-    <br/>
+                <br/>
 
-    <p:panel header="Listado de Socios">
+                <h:commandButton value="Guardar"
+                                 action="#{socioBean.guardar}"
+                                 styleClass="btnGuardar"/>
 
-        <p:dataTable value="#{socioBean.listaSocios}"
-                     var="s"
-                     paginator="true"
-                     rows="10"
-                     responsiveLayout="scroll">
+                <h:commandButton value="Nuevo"
+                                 action="#{socioBean.nuevo}"
+                                 immediate="true"
+                                 styleClass="btnNuevo"/>
 
-            <p:column headerText="ID">
-                #{s.id}
-            </p:column>
+            </fieldset>
 
-            <p:column headerText="Cédula">
-                #{s.persona.cedula}
-            </p:column>
+            <br/>
 
-            <p:column headerText="Nombre">
-                #{s.persona.nombre}
-            </p:column>
+            <!-- Listado -->
 
-            <p:column headerText="Apellido">
-                #{s.persona.apellido}
-            </p:column>
+            <fieldset>
 
-            <p:column headerText="Dirección">
-                #{s.direccion}
-            </p:column>
+                <legend>Listado de Socios</legend>
 
-            <p:column headerText="Teléfono">
-                #{s.telefono}
-            </p:column>
+                <h:dataTable value="#{socioBean.listaSocios}"
+                             var="s"
+                             styleClass="tabla"
+                             headerClass="cabecera"
+                             rowClasses="filaPar,filaImpar">
 
-            <p:column headerText="Fecha Nacimiento">
-                <h:outputText value="#{s.fechaNacimiento}">
-                    <f:convertDateTime pattern="dd/MM/yyyy"/>
-                </h:outputText>
-            </p:column>
+                    <h:column>
 
-            <p:column headerText="Edad">
-                #{s.calcularEdad()}
-            </p:column>
+                        <f:facet name="header">ID</f:facet>
 
-            <p:column headerText="Acciones">
+                        #{s.id}
 
-                <p:commandButton icon="pi pi-pencil"
-                                 title="Editar"
-                                 action="#{socioBean.editar(s)}"
-                                 update="frmSocio"/>
+                    </h:column>
 
-                <p:spacer width="5"/>
+                    <h:column>
 
-                <p:commandButton icon="pi pi-trash"
-                                 title="Eliminar"
-                                 action="#{socioBean.eliminar(s)}"
-                                 update="frmSocio">
+                        <f:facet name="header">Cédula</f:facet>
 
-                    <p:confirm header="Confirmación"
-                               message="¿Eliminar este socio?"
-                               icon="pi pi-exclamation-triangle"/>
+                        #{s.persona.cedula}
 
-                </p:commandButton>
+                    </h:column>
 
-            </p:column>
+                    <h:column>
 
-        </p:dataTable>
+                        <f:facet name="header">Nombre</f:facet>
 
-    </p:panel>
+                        #{s.persona.nombre}
 
-    <p:confirmDialog global="true">
+                    </h:column>
 
-        <p:commandButton value="Sí"
-                         type="button"
-                         styleClass="ui-confirmdialog-yes"/>
+                    <h:column>
 
-        <p:commandButton value="No"
-                         type="button"
-                         styleClass="ui-confirmdialog-no ui-button-secondary"/>
+                        <f:facet name="header">Apellido</f:facet>
 
-    </p:confirmDialog>
+                        #{s.persona.apellido}
 
-</h:form>
+                    </h:column>
 
-</h:body>
+                    <h:column>
 
-</html>
->>>>>>> Stashed changes
+                        <f:facet name="header">Dirección</f:facet>
+
+                        #{s.direccion}
+
+                    </h:column>
+
+                    <h:column>
+
+                        <f:facet name="header">Teléfono</f:facet>
+
+                        #{s.telefono}
+
+                    </h:column>
+
+                    <h:column>
+
+                        <f:facet name="header">Fecha Nacimiento</f:facet>
+
+                        <h:outputText value="#{s.fechaNacimiento}">
+
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+
+                        </h:outputText>
+
+                    </h:column>
+
+                    <h:column>
+
+                        <f:facet name="header">Edad</f:facet>
+
+                        #{s.calcularEdad()}
+
+                    </h:column>
+
+                    <h:column>
+
+                        <f:facet name="header">Acciones</f:facet>
+
+                        <h:commandButton value="Editar"
+                                         action="#{socioBean.editar(s)}"
+                                         styleClass="btnEditar"/>
+
+                        <h:outputText value="  "/>
+
+                        <h:commandButton value="Eliminar"
+                                         action="#{socioBean.eliminar(s)}"
+                                         styleClass="btnEliminar"
+                                         onclick="return confirm('¿Desea eliminar este socio?');"/>
+
+                    </h:column>
+
+                </h:dataTable>
+
+            </fieldset>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

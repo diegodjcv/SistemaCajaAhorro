@@ -1,6 +1,7 @@
 package ec.edu.ups.app.bean;
 
 import ec.edu.ups.app.bussiness.UsuarioON;
+import ec.edu.ups.app.modelo.Rol;
 import ec.edu.ups.app.modelo.Usuario;
 
 import javax.enterprise.context.SessionScoped;
@@ -42,7 +43,17 @@ public class LoginBean implements Serializable {
 
                 session.setAttribute("usuario", usuarioLogueado);
                 System.out.println("login");
-                res = "/dashboard.xhtml?faces-redirect=true";
+                Rol r= new Rol();
+                r=usuarioLogueado.getRol();
+                System.out.println(r.getTipo()+":::::::::::::::::::::::ROL");
+                
+                if(r.getTipo().equals("ADMINISTRADOR")) {
+                	res = "/dashboardAdmin.xhtml?faces-redirect=true";
+                }else {
+                	res = "/dashboard.xhtml?faces-redirect=true";
+                }
+                
+                
                 
             } else {
 
@@ -65,7 +76,7 @@ public class LoginBean implements Serializable {
         return res;
 
     }
-
+/**
     public void logout() {
 
         try {
@@ -85,7 +96,8 @@ public class LoginBean implements Serializable {
                             FacesContext.getCurrentInstance()
                                     .getExternalContext()
                                     .getRequestContextPath()
-                                    + "login.xhtml");
+                                    + "/dashboard.xhtml?faces-redirect=true");
+            System.out.println("::__::__::__::__");
 
         } catch (IOException e) {
 
@@ -94,11 +106,15 @@ public class LoginBean implements Serializable {
         }
 
     }
-
+**/
     public boolean isLogueado() {
 
         return usuarioLogueado != null;
 
+    }
+    
+    public void imp() {
+    	System.out.println("::::::::::::::::::::::"+login());
     }
     
     public void limpiar() {

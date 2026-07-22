@@ -7,7 +7,7 @@
         xmlns:f="http://xmlns.jcp.org/jsf/core"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         xmlns:p="http://primefaces.org/ui">
-
+<link href="resources/css/dashboard.css" rel="stylesheet" type="text/css" />
     <ui:define name="contenido">
 
         <h2>Panel Principal</h2>
@@ -18,6 +18,31 @@
 
         <div class="grid">
 
+			<!-- Crear Usuario -->
+
+		<div class="col-12 md:col-4">
+		
+		    <h:commandButton
+		            value="Crear Usuario"
+		            icon="pi pi-user-plus"
+		            outcome=""
+		            styleClass="ui-button-primary"
+		            style="width:100%"/>
+		
+		</div>
+		
+		<!-- Administrar Usuarios -->
+		
+		<div class="col-12 md:col-4">
+		
+		    <h:commandButton
+		            value="Administrar Usuarios"
+		            icon="pi pi-users"
+		            outcome="socio.xhtml?faces-redirect=true"
+		            styleClass="ui-button-secondary"
+		            style="width:100%"/>
+		
+		</div>
             <div class="col-12 md:col-3">
 
                 <h:panelGroup styleClass="dashboard-card">
@@ -108,61 +133,49 @@
 
         <p:panel header="Accesos Rápidos">
 
-            <div class="grid">
-
-                <div class="col-12 md:col-4">
-
-                    <p:commandButton value="Personas"
-                                     icon="pi pi-users"
-                                     outcome="/persona"
-                                     styleClass="ui-button-primary"
-                                     style="width:100%"/>
-
-                </div>
-
-                <div class="col-12 md:col-4">
-
-                    <p:commandButton value="Socios"
-                                     icon="pi pi-id-card"
-                                     outcome="/socio"
-                                     styleClass="ui-button-success"
-                                     style="width:100%"/>
-
-                </div>
-
-                <div class="col-12 md:col-4">
-
-                    <p:commandButton value="Cuentas"
-                                     icon="pi pi-wallet"
-                                     outcome="/cuenta"
-                                     styleClass="ui-button-help"
-                                     style="width:100%"/>
-
-                </div>
-
-                <div class="col-12 md:col-4">
-
-                    <p:commandButton value="Créditos"
-                                     icon="pi pi-credit-card"
-                                     outcome="/credito"
-                                     styleClass="ui-button-warning"
-                                     style="width:100%"/>
-
-                </div>
-
-                <div class="col-12 md:col-4">
-
-                    <p:commandButton value="Transacciones"
-                                     icon="pi pi-money-bill"
-                                     outcome="/transaccion"
-                                     styleClass="ui-button-info"
-                                     style="width:100%"/>
-
-                </div>
-
-            </div>
-
-        </p:panel>
+		    <h:panelGrid columns="3"
+		                 cellpadding="10"
+		                 width="100%">
+		
+		        <h:commandButton value="Personas"
+		                         action="persona?faces-redirect=true"
+		                         styleClass="btn btn-primary"/>
+		
+		        <h:commandButton value="Socios"
+		                         action="socio?faces-redirect=true"
+		                         styleClass="btn btn-success"/>
+		
+		        <h:commandButton value="Usuarios"
+		                         action="usuario?faces-redirect=true"
+		                         styleClass="btn btn-info"/>
+		
+		        <h:commandButton value="Cuentas"
+		                         action="cuenta?faces-redirect=true"
+		                         styleClass="btn btn-help"/>
+		
+		        <h:commandButton value="Créditos"
+		                         action="credito?faces-redirect=true"
+		                         styleClass="btn btn-warning"/>
+		
+		        <h:commandButton value="Transacciones"
+		                         action="transaccion?faces-redirect=true"
+		                         styleClass="btn btn-danger"/>
+		
+		        <h:commandButton value="Tipos de Transacción"
+		                         action="tipoTransaccion?faces-redirect=true"
+		                         styleClass="btn btn-secondary"/>
+		
+		        <h:commandButton value="Libro Diario"
+		                         action="transaccionDiario?faces-redirect=true"
+		                         styleClass="btn btn-secondary"/>
+		
+		        <h:commandButton value="Asientos Contables"
+		                         action="asientoContable?faces-redirect=true"
+		                         styleClass="btn btn-secondary"/>
+		
+		    </h:panelGrid>
+		
+		</p:panel>
 
         <br/>
 

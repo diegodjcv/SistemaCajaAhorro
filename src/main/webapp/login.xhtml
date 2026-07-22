@@ -39,7 +39,7 @@
 
             <div class="campo">
 
-                <span>Usuario</span>
+                <span>Usuario: </span>
 
                 <h:inputText
                         value="#{loginBean.usuario}"
@@ -49,7 +49,7 @@
 
             <div class="campo">
 
-                <span>Contraseña</span>
+                <span>Contraseña: </span>
 
                 <h:inputSecret
                         value="#{loginBean.clave}"
@@ -67,10 +67,7 @@
 
                 <h:commandButton
                         value="Limpiar"
-                        icon="pi pi-refresh"
-                        action="#{loginBean.limpiar()}"
-                        process="@this"
-                        update="@form"
+                        action="#{loginBean.imp()}"
                         styleClass="ui-button"/>
 
             </div>
