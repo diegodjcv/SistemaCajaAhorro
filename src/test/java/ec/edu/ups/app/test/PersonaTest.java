@@ -3,8 +3,9 @@ package ec.edu.ups.app.test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.annotation.Testable;
 
-import ec.edu.ups.app.dao.PersonaDao;
+import ec.edu.ups.app.bussiness.PersonaON;
 import ec.edu.ups.app.modelo.Persona;
 
 class PersonaTest {
@@ -18,13 +19,16 @@ class PersonaTest {
 
 	        persona.setCedula("0106524275");
 
-	        persona.setNombres("carmen guaman");
+	        persona.setNombres("carmen alexandra");
 	        persona.setApellidos("guaman yanza");
 	        persona.setCorreo("alexandraguaman@gmail.com");
 	        persona.setUsername("alexg");
 	        persona.setPassword("123");
 
 
+	        PersonaON personaOn=new PersonaON();
+	        personaOn.guardar(persona);
+	       
 	        assertEquals(
 	                "0106524275",
 	                persona.getCedula()
@@ -49,17 +53,26 @@ class PersonaTest {
 	        );
 	        assertEquals(
 	                "alexg",
-	                persona.getCorreo()
+	                persona.getUsername()
 	        );
 
 	        assertEquals(
 	                "123",
 	                persona.getPassword()
 	        );
-	        PersonaDao personaDao=new PersonaDao();
-	        personaDao.insertar(persona);
+	        
+	        
 	    }
 
+	    @Testable
+	    public void buscarPersona() {
+	    	PersonaON personaOn=new PersonaON();
+	    	 Persona p =new Persona();
+		        p=personaOn.buscar("0106625221");
+		        
+		        System.out.println("<<<<<<<<<<<<"+p.getNombres()+" "+p.getApellidos()+">>>>>>>>>>>>");
+		        
+	    }
 
 
 	    @Test
