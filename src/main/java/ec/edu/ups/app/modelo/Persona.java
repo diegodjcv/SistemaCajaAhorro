@@ -17,8 +17,11 @@ public class Persona {
 	private String password;
 	private String correo;
 	
+	
 	@OneToOne
 	private Rol rol;
+	
+	
 	
 	
 	public int getId() {
