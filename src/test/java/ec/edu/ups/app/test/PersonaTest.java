@@ -1,84 +1,80 @@
 package ec.edu.ups.app.test;
 
-
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import ec.edu.ups.app.dao.PersonaDao;
 import ec.edu.ups.app.modelo.Persona;
 
+class PersonaTest {
 
 
-public class PersonaTest {
+	    @Test
+	    public void crearPersonaTest() {
 
 
-    @Test
-    public void crearPersonaTest() {
+	        Persona persona = new Persona();
+
+	        persona.setCedula("0106524275");
+
+	        persona.setNombres("carmen guaman");
+	        persona.setApellidos("guaman yanza");
+	        persona.setCorreo("alexandraguaman@gmail.com");
+	        persona.setUsername("alexg");
+	        persona.setPassword("123");
 
 
-        Persona persona = new Persona();
-
-        persona.setCedula("0106625221");
-
-        persona.setNombres("diego javier");
-        persona.setApellidos("cabrera vanegas");
-        persona.setCorreo("diegodjvc@gmail.com");
-        persona.setUsername("djcv1994");
-        persona.setPassword("123456");
+	        assertEquals(
+	                "0106524275",
+	                persona.getCedula()
+	        );
 
 
-        assertEquals(
-                "0106625221",
-                persona.getCedula()
-        );
+	        assertEquals(
+	                "carmen alexandra",
+	                persona.getNombres()
+	        );
 
 
-        assertEquals(
-                "diego javier",
-                persona.getNombres()
-        );
+	        assertEquals(
+	                "guaman yanza",
+	                persona.getApellidos()
+	        );
 
 
-        assertEquals(
-                "cabrera vanegas",
-                persona.getApellidos()
-        );
+	        assertEquals(
+	                "alexandraguaman@gmail.com",
+	                persona.getCorreo()
+	        );
+	        assertEquals(
+	                "alexg",
+	                persona.getCorreo()
+	        );
 
-
-        assertEquals(
-                "diegodjvc@gmail.com",
-                persona.getCorreo()
-        );
-        assertEquals(
-                "diegodjv1994",
-                persona.getCorreo()
-        );
-
-        assertEquals(
-                "123456",
-                persona.getPassword()
-        );
-
-    }
+	        assertEquals(
+	                "123",
+	                persona.getPassword()
+	        );
+	        PersonaDao personaDao=new PersonaDao();
+	        personaDao.insertar(persona);
+	    }
 
 
 
-    @Test
-    public void personaCedulaNoDebeSerNula() {
+	    @Test
+	    public void personaCedulaNoDebeSerNula() {
 
 
-        Persona persona = new Persona();
+	        Persona persona = new Persona();
 
 
-        persona.setCedula("0106625221");
+	        persona.setCedula("0106625221");
 
 
-        assertNotNull(
-                persona.getCedula()
-        );
+	        assertNotNull(
+	                persona.getCedula()
+	        );
 
-    }
-
-
+	    }
 }
-   

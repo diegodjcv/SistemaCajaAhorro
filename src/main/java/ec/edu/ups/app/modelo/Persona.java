@@ -21,9 +21,7 @@ public class Persona {
 	@OneToOne
 	private Rol rol;
 	
-	
-	
-	
+		
 	public int getId() {
 		return id;
 	}
