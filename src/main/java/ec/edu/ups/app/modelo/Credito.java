@@ -34,6 +34,10 @@ public class Credito {
 	public void setPlazo(int plazo) {
 		this.plazo = plazo;
 	}
+	
+	public String getEstado() {
+		return estado;
+	}
 	public String isEstado() {
 		return estado;
 	}

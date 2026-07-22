@@ -16,7 +16,7 @@ public class CreditoDao implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Inject
-    private EntityManager em;
+	public EntityManager em;
 
     // Insertar crédito
     public void insertar(Credito credito) {

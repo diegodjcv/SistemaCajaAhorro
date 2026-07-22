@@ -1,5 +1,8 @@
 package ec.edu.ups.app.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import javax.persistence.EntityManager;
 
 import org.junit.Test;
@@ -19,10 +22,8 @@ public class CreditoTest {
     public void preparar() {
 
         creditoDao = new CreditoDao();
-
         em = Mockito.mock(EntityManager.class);
 
-        // Inyección manual del EntityManager
         creditoDao.em= em;
 
     }
